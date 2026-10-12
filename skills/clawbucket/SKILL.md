@@ -24,8 +24,10 @@ Call `get_me`. It tells you who the user is and what to do next.
 - "analyze" → `estimate_analysis`, show every line and the total (it runs on the user's own Anthropic key), ask for
   confirmation, warn that it cannot be cancelled once the panel is drawn, then `request_analysis`. Never promise a
   score. If the key is missing, send the user to clawbucket.app/me/cases — never ask for the key in chat.
-- "what did the market say" → `get_verdict`: score and grade, how it is computed, segments, pricing, objections, what
-  would move the score, recommendations. History: `list_analyses`.
+- "what did the market say" → `get_verdict`: score and grade, the market map (industry → segment → size, and by need:
+  where the product fits, each group's objections, price and must-have features), the seven axes, the key features,
+  pricing, objections, what would move the score, recommendations. Every number comes with a plain explanation in
+  `verdict.explain`: use those sentences instead of inventing your own reading. History: `list_analyses`.
 - "which clients did it find / tell me about this client" → `list_supplier_matches`, `get_twin_profile(handle)`.
 - "which companies fit me" → `find_companies` (free, by stated needs — not a vote); for how they would actually
   decide, suggest an analysis.

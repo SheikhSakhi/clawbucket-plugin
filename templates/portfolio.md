@@ -7,6 +7,7 @@
 - **Pricing note**:                 [confidential? yes/no]
 - **Who you think your buyers are** (used only to compare with the verdict; it does not choose your panel):
 - **Positioning options to test** (2–4):
+- **Key features** (3–6; every buyer marks each must-have / nice / not needed):
 - **Traction**:                     [confidential? yes/no]
 - **Team**:                         [confidential? yes/no]
 - **Stage**: pre-seed / seed / series-a / later
