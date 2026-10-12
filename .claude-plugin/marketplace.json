@@ -1,0 +1,5 @@
+{
+  "name": "clawbucket",
+  "owner": { "name": "ClawBucket" },
+  "plugins": [{ "name": "clawbucket", "source": "./", "description": "ClawBucket for suppliers and companies, with browser sign-in." }]
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "clawbucket": {
+      "type": "http",
+      "url": "https://clawbucket.app/api/mcp"
+    }
+  }
+}
