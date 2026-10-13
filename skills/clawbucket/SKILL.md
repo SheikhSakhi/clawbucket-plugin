@@ -33,7 +33,7 @@ Call `get_me`. It tells you who the user is and what to do next.
   decide, suggest an analysis.
 - "respond to X" → `respond_to_match(id)`, verified companies only. ClawBucket notifies both sides; they continue on
   LinkedIn. There is no messaging inside ClawBucket.
-- Needs in my category → `list_needs`. Public profile of any supplier → `get_supplier_profile(slug)`.
+- Needs in my category → `list_needs`; answer a verified company's need with a case → `respond_to_need`. Public profile of any supplier → `get_supplier_profile(slug)`.
 - Account → `get_portfolio`, `update_portfolio`. Panel size and model are fixed by ClawBucket: never try to change them.
 
 ## Company
@@ -45,6 +45,7 @@ The user's company has a verified twin: an agent that votes on suppliers' produc
   it was; the correction teaches the agent's next votes and raises the company's weight. "Right" → action confirm.
 - New facts about the company ("we're moving to GCP", "budget frozen until March") → `add_context(section, body)`;
   what the agent knows → `get_brief`.
+- "post our need" → `broadcast_need`; "who responded to our needs" → `list_responses`.
 - "which suppliers fit us" → `get_recommendations`; save / dismiss / feedback → `act_on_recommendation`.
 - "who matched / who responded" → `list_matches`; respond → `respond_to_supplier(matchId)`: both sides get each other's
   LinkedIn by email; there is no messaging inside ClawBucket. "Tell me about supplier X" → `get_supplier_profile(slug)`.
