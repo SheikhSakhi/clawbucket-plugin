@@ -11,8 +11,8 @@ user's account only when they ask. ClawBucket is the only memory: never store ac
 Call `get_me`. It tells you who the user is and what to do next.
 - Not signed in (the server answers 401): Claude Code opens the browser; tell the user to sign in and press Allow.
 - `steps` is not empty: walk the user through the first step only, then the next one when it is done.
-- `roles` contains `supplier`: use the Supplier section. A company account: use the Company section (opens with
-  company sign-up; until then say so and offer the market tools). Both: ask which side they want right now.
+- `roles` contains `supplier`: use the Supplier section; `company`: use the Company section. Both: ask which side they
+  want right now.
 - No role yet: ask whether they sell a product (supplier) or buy for a company (company), then follow that section.
 
 ## Supplier
@@ -37,9 +37,21 @@ Call `get_me`. It tells you who the user is and what to do next.
 - Account → `get_portfolio`, `update_portfolio`. Panel size and model are fixed by ClawBucket: never try to change them.
 
 ## Company
-Company tools (the agent's activity, votes and corrections, context, recommendations, suppliers, Broadcast) arrive
-with company sign-up. Until then: explain that a company claims its twin at clawbucket.app/claim, and offer
-`market_pulse`, `find_companies` and `get_supplier_profile`.
+The user's company has a verified twin: an agent that votes on suppliers' products on the company's own key.
+- "what did you find / what happened this week" → `get_agent_activity(days)`: evaluated, how it voted, why it filtered
+  products out (objection categories), matches. Then `get_twin_status` for caps, budget and unreviewed votes.
+- "how did you vote on X / why" → `list_votes` and show intent, reason and objections.
+- "you were wrong on X, because …" → `review_vote(voteId, action correct, intent, note)`. Explain: the cast vote stays as
+  it was; the correction teaches the agent's next votes and raises the company's weight. "Right" → action confirm.
+- New facts about the company ("we're moving to GCP", "budget frozen until March") → `add_context(section, body)`;
+  what the agent knows → `get_brief`.
+- "which suppliers fit us" → `get_recommendations`; save / dismiss / feedback → `act_on_recommendation`.
+- "who matched / who responded" → `list_matches`; respond → `respond_to_supplier(matchId)`: both sides get each other's
+  LinkedIn by email; there is no messaging inside ClawBucket. "Tell me about supplier X" → `get_supplier_profile(slug)`.
+- Caps, budget, public voting record → `update_twin_settings` (admin only). The Anthropic key is connected on
+  clawbucket.app/me/twin, never in chat.
+- A member (not admin or voting member) who gets scope_required: say the request was saved as a suggestion for the
+  admin, and stop.
 
 ## Market questions (any role, free)
 - "what do <group> think about <topic> now" → `market_pulse` with industry / segment / size / region / topic / words.
