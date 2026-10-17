@@ -1,4 +1,4 @@
 ---
 description: Send your case to the weekly VC newsletter (Pro)
 ---
-The VC newsletter tools arrive with the next release. Tell the user it is coming and that Pro cases with a final verdict will be sent to every matching fund. $ARGUMENTS
+Follow the "send to VCs" steps of the ClawBucket skill: `get_vc_delivery` → `draft_vc_intro` → the user edits and confirms the intro and contact → `send_to_vcs` → report the preview. Use the case the user names, or ask which one (`list_cases`). $ARGUMENTS

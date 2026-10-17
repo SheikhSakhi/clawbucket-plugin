@@ -34,6 +34,11 @@ Call `get_me`. It tells you who the user is and what to do next.
 - "respond to X" → `respond_to_match(id)`, verified companies only. ClawBucket notifies both sides; they continue on
   LinkedIn. There is no messaging inside ClawBucket.
 - Needs in my category → `list_needs`; answer a verified company's need with a case → `respond_to_need`. Public profile of any supplier → `get_supplier_profile(slug)`.
+- "send to VCs" (Pro) → `get_vc_delivery(caseId)` first: if it says why the case can't go yet, tell the user exactly
+  that. Otherwise `draft_vc_intro` (on the user's key), show the draft, let the user edit it, ask where funds should
+  contact them (work e-mail, LinkedIn or a calendar link), and only after they confirm the exact text call `send_to_vcs`.
+  Then report the preview: matching verified funds, full cards vs lines, the Tuesday it goes out. Never promise
+  investment or replies; positions in the e-mail can't be bought. Stop → `withdraw_from_vcs`.
 - Account → `get_portfolio`, `update_portfolio`. Panel size and model are fixed by ClawBucket: never try to change them.
 
 ## Company
@@ -49,6 +54,7 @@ The user's company has a verified twin: an agent that votes on suppliers' produc
 - "which suppliers fit us" → `get_recommendations`; save / dismiss / feedback → `act_on_recommendation`.
 - "who matched / who responded" → `list_matches`; respond → `respond_to_supplier(matchId)`: both sides get each other's
   LinkedIn by email; there is no messaging inside ClawBucket. "Tell me about supplier X" → `get_supplier_profile(slug)`.
+- "we use X, here's how it went" → `leave_review` (only after a responded match or a saved pick, and only if they use it).
 - Caps, budget, public voting record → `update_twin_settings` (admin only). The Anthropic key is connected on
   clawbucket.app/me/twin, never in chat.
 - A member (not admin or voting member) who gets scope_required: say the request was saved as a suggestion for the
