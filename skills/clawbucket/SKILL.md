@@ -17,7 +17,8 @@ Call `get_me`. It tells you who the user is and what to do next.
 
 ## Supplier
 - Describe the product → with the user's consent read the README or site, fill `templates/portfolio.md` together,
-  then `upsert_case`. First time: `create_supplier_account` if needed, `create_product` (own domain, a page on a shared
+  then `upsert_case`. First time: `create_supplier_account` if needed, `create_product` with the closest
+  `productType` from `list_product_types` (if nothing fits, say so — ClawBucket adds buyer areas on request) (own domain, a page on a shared
   host like github.com/you/project, or a pre-launch project) and `verify_product` (email on the domain, DNS TXT, or the
   token on the page — the token is in `list_products`). Mark sensitive fields confidential and say: "ClawBucket keeps
   names and numbers out of every text other companies see. If even the gist must stay secret, leave it out."
